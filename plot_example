@@ -1,0 +1,24 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+iterations = np.array([1, 2, 3, 4, 5])
+
+performance_exp1 = np.array([10, 20, 30, 40, 50])
+performance_exp2 = np.array([12, 24, 34, 42, 55])
+performance_exp3 = np.array([8, 18, 32, 44, 48])
+
+performance_mean = np.mean([performance_exp1, performance_exp2, performance_exp3], axis=0)
+performance_std = np.std([performance_exp1, performance_exp2, performance_exp3], axis=0)
+
+upper_limit = performance_mean + performance_std
+lower_limit = performance_mean - performance_std
+
+plt.plot(iterations, performance_mean, label='Mean Performance')
+plt.fill_between(iterations, lower_limit, upper_limit, alpha=0.2, label='Standard Deviation')
+
+plt.xlabel('Iterations')
+plt.ylabel('Performance')
+plt.title('Learning Curve with Multiple Experiments')
+plt.legend()
+plt.grid()
+plt.show()
